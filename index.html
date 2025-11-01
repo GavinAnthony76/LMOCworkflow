@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>LMOC Broadcast Team Workflow</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎥 LMOC Broadcast Team Workflow</h1>
+        <p class="subtitle">Interactive Checklists for All Broadcast Roles</p>
+
+        <!-- Tabs -->
+        <div class="tab-container">
+            <button class="tab active" onclick="switchTab('technical')">
+                🎬 Technical Director
+            </button>
+            <button class="tab" onclick="switchTab('comms')">
+                📡 Comms/Backup Director
+            </button>
+            <button class="tab" onclick="switchTab('graphics')">
+                🎨 Graphics Host
+            </button>
+        </div>
+
+        <!-- TECHNICAL DIRECTOR TAB -->
+        <div id="technical" class="tab-content active">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill-technical">0% Complete</div>
+            </div>
+
+            <div class="workflow">
+                <!-- START PHASE -->
+                <div class="phase start">
+                    <div class="phase-title">
+                        <span class="phase-icon">🚀</span>
+                        START - Broadcast Day Begins
+                    </div>
+                    <div class="steps">
+                        <div class="step" data-role="technical" data-step="1">
+                            <div class="step-title">
+                                <span class="step-number">1</span>
+                                Join Slack Huddle
+                            </div>
+                            <div class="step-description">
+                                Join the #broadcast-team huddle in Slack to coordinate with the entire team
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRE-PRODUCTION PHASE -->
+                <div class="phase preproduction">
+                    <div class="phase-title">
+                        <span class="phase-icon">⚙️</span>
+                        PRE-PRODUCTION - Setup & Configuration
+                    </div>
+                    <div class="steps">
+                        <div class="step" data-role="technical" data-step="2">
+                            <div class="step-title">
+                                <span class="step-number">2</span>
+                                Update LiveStream Studio 6
+                            </div>
+                            <div class="step-description">
+                                Ensure LS6 is up to date with latest version
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="technical" data-step="3">
+                            <div class="step-title">
+                                <span class="step-number">3</span>
+                                Check Video/Audio Signals
+                            </div>
+                            <div class="step-description">
+                                Verify all video and audio signals are seen and heard through LS6
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="technical" data-step="4">
+                            <div class="step-title">
+                                <span class="step-number">4</span>
+                                Position Camera Angles
+                            </div>
+                            <div class="step-description">
+                                Set all camera angles in correct positions (will readjust after Sabbath school)
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="technical" data-step="5">
+                            <div class="step-title">
+                                <span class="step-number">5</span>
+                                Setup Virtual Guests
+                            </div>
+                            <div class="step-description">
+                                Add virtual guests to video input list and test video/audio
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="technical" data-step="6">
+                            <div class="step-title">
+                                <span class="step-number">6</span>
+                                Configure Sound Output
+                            </div>
+                            <div class="step-description">
+                                Set system sound to "External Headphones" NOT Cam Link 4K
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="technical" data-step="7">
+                            <div class="step-title">
+                                <span class="step-number">7</span>
+                                Set Audio Monitors
+                            </div>
+                            <div class="step-description">
+                                Turn OFF monitors for: Cameras 1-4, "slides", "Ivor's Mic", "Atonte's Mic", "Stream Out". Turn ON all others
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="technical" data-step="8">
+                            <div class="step-title">
+                                <span class="step-number">8</span>
+                                Configure Lower Thirds
+                            </div>
+                            <div class="step-description">
+                                Set names/info with correct spelling for lower third graphics
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="technical" data-step="9">
+                            <div class="step-title">
+                                <span class="step-number">9</span>
+                                Design Guest View Grids
+                            </div>
+                            <div class="step-description">
+                                Set and design guest view grids if applicable
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="technical" data-step="10">
+                            <div class="step-title">
+                                <span class="step-number">10</span>
+                                Set Restream Key
+                            </div>
+                            <div class="step-description">
+                                Retrieve and configure stream key from Restream
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="technical" data-step="11">
+                            <div class="step-title">
+                                <span class="step-number">11</span>
+                                Check SD Card Storage
+                            </div>
+                            <div class="step-description">
+                                Insert SD cards in all cameras, ensure at least 1hr 20min storage available
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="technical" data-step="12">
+                            <div class="step-title">
+                                <span class="step-number">12</span>
+                                Readjust After Sabbath School
+                            </div>
+                            <div class="step-description">
+                                Readjust all camera angles after Sabbath school ends
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCTION PHASE -->
+                <div class="phase production">
+                    <div class="phase-title">
+                        <span class="phase-icon">🎬</span>
+                        PRODUCTION - Live Broadcast
+                    </div>
+                    <div class="steps">
+                        <div class="step" data-role="technical" data-step="13">
+                            <div class="step-title">
+                                <span class="step-number">13</span>
+                                Studio Segments - Mic Control
+                            </div>
+                            <div class="step-description">
+                                Set Ivor and Atonte's mics to "RED" so they're always heard when live. Un-Red when segment ends
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="technical" data-step="14">
+                            <div class="step-title">
+                                <span class="step-number">14</span>
+                                Announcements - Keep Atonte Live
+                            </div>
+                            <div class="step-description">
+                                Red Atonte's mic during announcements to keep her heard when switching to graphics
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="technical" data-step="15">
+                            <div class="step-title">
+                                <span class="step-number">15</span>
+                                Start Sermon Recording
+                            </div>
+                            <div class="step-description">
+                                Record ALL 4 camera shots to SD cards + record from LS6 (except guest speakers)
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="technical" data-step="16">
+                            <div class="step-title">
+                                <span class="step-number">16</span>
+                                Live Switching & Monitoring
+                            </div>
+                            <div class="step-description">
+                                Make live camera switching decisions and monitor audio levels throughout
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="technical" data-step="17">
+                            <div class="step-title">
+                                <span class="step-number">17</span>
+                                Stop Recording After Sermon
+                            </div>
+                            <div class="step-description">
+                                Stop all camera and LS6 recordings when sermon is complete
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- END PHASE -->
+                <div class="phase end">
+                    <div class="phase-title">
+                        <span class="phase-icon">✅</span>
+                        END - Wrap Up
+                    </div>
+                    <div class="steps">
+                        <div class="step" data-role="technical" data-step="18">
+                            <div class="step-title">
+                                <span class="step-number">18</span>
+                                Un-Red Studio Mics
+                            </div>
+                            <div class="step-description">
+                                Turn off Red status on all studio mics so they're no longer live
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="technical" data-step="19">
+                            <div class="step-title">
+                                <span class="step-number">19</span>
+                                Broadcast Complete! 🎉
+                            </div>
+                            <div class="step-description">
+                                Great job! Review recordings and prepare for next week
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-box" style="background: white; border: 2px solid #e2e8f0;"></div>
+                    <span>Pending</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box" style="background: #f0fdf4; border: 2px solid #10b981;"></div>
+                    <span>Completed</span>
+                </div>
+            </div>
+
+            <button class="reset-btn" onclick="resetWorkflow('technical')">Reset Technical Director Workflow</button>
+        </div>
+
+        <!-- COMMS/BACKUP DIRECTOR TAB -->
+        <div id="comms" class="tab-content">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill-comms">0% Complete</div>
+            </div>
+
+            <div class="workflow">
+                <!-- PRE-PRODUCTION PHASE -->
+                <div class="phase preproduction">
+                    <div class="phase-title">
+                        <span class="phase-icon">⚙️</span>
+                        PRE-PRODUCTION - Setup
+                    </div>
+                    <div class="steps">
+                        <div class="step" data-role="comms" data-step="1">
+                            <div class="step-title">
+                                <span class="step-number">1</span>
+                                Set Backdrops
+                            </div>
+                            <div class="step-description">
+                                Ensure both table and wall backdrops are set correctly before stream starts
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="comms" data-step="2">
+                            <div class="step-title">
+                                <span class="step-number">2</span>
+                                Start Slack Huddle
+                            </div>
+                            <div class="step-description">
+                                Start huddle in #broadcast-team. Join from "LMC-Comms" and "LS6-Audio" machines
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="comms" data-step="3">
+                            <div class="step-title">
+                                <span class="step-number">3</span>
+                                Configure Audio Settings
+                            </div>
+                            <div class="step-description">
+                                Set LMC-Comms volume to MAX to communicate with studio. Lower to 0 when done. Unmute your mic
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="comms" data-step="4">
+                            <div class="step-title">
+                                <span class="step-number">4</span>
+                                Setup Sermon Slides
+                            </div>
+                            <div class="step-description">
+                                Ensure sermon slides are ready and projecting before the sermon starts
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="comms" data-step="5">
+                            <div class="step-title">
+                                <span class="step-number">5</span>
+                                Open Restream Chat
+                            </div>
+                            <div class="step-description">
+                                Open Restream on "LMC – Streaming" server to "chat" tab so comments can be seen from studio
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCTION PHASE -->
+                <div class="phase production">
+                    <div class="phase-title">
+                        <span class="phase-icon">📡</span>
+                        DURING PRODUCTION
+                    </div>
+                    <div class="steps">
+                        <div class="step" data-role="comms" data-step="6">
+                            <div class="step-title">
+                                <span class="step-number">6</span>
+                                Monitor Slack for Updates
+                            </div>
+                            <div class="step-description">
+                                Stay tuned to Slack for any updates or last-minute changes during the stream
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="comms" data-step="7">
+                            <div class="step-title">
+                                <span class="step-number">7</span>
+                                Send Messages to Studio
+                            </div>
+                            <div class="step-description">
+                                Be ready to transmit messages via Comms server to talent in studio (using Keynote)
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="comms" data-step="8">
+                            <div class="step-title">
+                                <span class="step-number">8</span>
+                                Ready to Take Over
+                            </div>
+                            <div class="step-description">
+                                Be prepared to jump in and take over Technical Director position if needed
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- END PHASE -->
+                <div class="phase end">
+                    <div class="phase-title">
+                        <span class="phase-icon">✅</span>
+                        POST-PRODUCTION
+                    </div>
+                    <div class="steps">
+                        <div class="step" data-role="comms" data-step="9">
+                            <div class="step-title">
+                                <span class="step-number">9</span>
+                                Broadcast Complete! 🎉
+                            </div>
+                            <div class="step-description">
+                                Great job supporting the team! Close Restream and prepare for next week
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-box" style="background: white; border: 2px solid #e2e8f0;"></div>
+                    <span>Pending</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box" style="background: #f0fdf4; border: 2px solid #10b981;"></div>
+                    <span>Completed</span>
+                </div>
+            </div>
+
+            <button class="reset-btn" onclick="resetWorkflow('comms')">Reset Comms/Backup Director Workflow</button>
+        </div>
+
+        <!-- GRAPHICS HOST TAB -->
+        <div id="graphics" class="tab-content">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill-graphics">0% Complete</div>
+            </div>
+
+            <div class="workflow">
+                <!-- PRE-PRODUCTION PHASE -->
+                <div class="phase preproduction">
+                    <div class="phase-title">
+                        <span class="phase-icon">⚙️</span>
+                        PRE-PRODUCTION - Preparation (By Thursday Night)
+                    </div>
+                    <div class="steps">
+                        <div class="step" data-role="graphics" data-step="1">
+                            <div class="step-title">
+                                <span class="step-number">1</span>
+                                Import Media
+                            </div>
+                            <div class="step-description">
+                                Import all videos and graphics for weekly Sabbath stream. Check rundown on Mighty Networks
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="graphics" data-step="2">
+                            <div class="step-title">
+                                <span class="step-number">2</span>
+                                Order Graphics
+                            </div>
+                            <div class="step-description">
+                                Ensure all graphics are correctly ordered and accounted for by Thursday night
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="graphics" data-step="3">
+                            <div class="step-title">
+                                <span class="step-number">3</span>
+                                Test All Media
+                            </div>
+                            <div class="step-description">
+                                Verify all videos play through successfully and all images display correctly
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="graphics" data-step="4">
+                            <div class="step-title">
+                                <span class="step-number">4</span>
+                                Clean Up Downloads
+                            </div>
+                            <div class="step-description">
+                                Move any browser downloads to trash after adding them to ProPresenter
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- START PHASE -->
+                <div class="phase start">
+                    <div class="phase-title">
+                        <span class="phase-icon">🚀</span>
+                        BROADCAST DAY
+                    </div>
+                    <div class="steps">
+                        <div class="step" data-role="graphics" data-step="5">
+                            <div class="step-title">
+                                <span class="step-number">5</span>
+                                Join Slack Huddle
+                            </div>
+                            <div class="step-description">
+                                Join the #broadcast-team huddle before the service starts
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCTION PHASE -->
+                <div class="phase production">
+                    <div class="phase-title">
+                        <span class="phase-icon">🎨</span>
+                        DURING PRODUCTION
+                    </div>
+                    <div class="steps">
+                        <div class="step" data-role="graphics" data-step="6">
+                            <div class="step-title">
+                                <span class="step-number">6</span>
+                                Monitor Slack Updates
+                            </div>
+                            <div class="step-description">
+                                Stay tuned to Slack for any updates or last-minute changes
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="graphics" data-step="7">
+                            <div class="step-title">
+                                <span class="step-number">7</span>
+                                Execute Graphics Transitions
+                            </div>
+                            <div class="step-description">
+                                Make graphic transitions during stream according to Technical Director's call
+                            </div>
+                        </div>
+
+                        <div class="step" data-role="graphics" data-step="8">
+                            <div class="step-title">
+                                <span class="step-number">8</span>
+                                Adapt to Changes On-the-Fly
+                            </div>
+                            <div class="step-description">
+                                Be ready to adapt to last-minute changes during the live broadcast
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- END PHASE -->
+                <div class="phase end">
+                    <div class="phase-title">
+                        <span class="phase-icon">✅</span>
+                        POST-PRODUCTION
+                    </div>
+                    <div class="steps">
+                        <div class="step" data-role="graphics" data-step="9">
+                            <div class="step-title">
+                                <span class="step-number">9</span>
+                                Broadcast Complete! 🎉
+                            </div>
+                            <div class="step-description">
+                                Excellent work! Start preparing graphics for next week
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-box" style="background: white; border: 2px solid #e2e8f0;"></div>
+                    <span>Pending</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box" style="background: #f0fdf4; border: 2px solid #10b981;"></div>
+                    <span>Completed</span>
+                </div>
+            </div>
+
+            <button class="reset-btn" onclick="resetWorkflow('graphics')">Reset Graphics Host Workflow</button>
+        </div>
+
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
