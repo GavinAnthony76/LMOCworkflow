@@ -441,10 +441,9 @@ export const WORKFLOW_ROLES: Role[] = [
 ];
 
 export const TIMELINE_EVENTS = [
-  { time: "Thu 9 PM", event: "Graphics prep deadline", day: 4, hour: 21, min: 0 },
-  { time: "8:30 AM", event: "Team arrives, setup begins", day: 6, hour: 8, min: 30 },
-  { time: "9:30 AM", event: "Sabbath School begins", day: 6, hour: 9, min: 30 },
-  { time: "10:45 AM", event: "Sabbath School ends — readjust cameras", day: 6, hour: 10, min: 45 },
-  { time: "11:00 AM 🔴", event: "Service begins — GO LIVE", day: 6, hour: 11, min: 0 },
-  { time: "~1:00 PM", event: "Service ends · Wrap up", day: 6, hour: 13, min: 0 },
+  { time: "Wed 9 PM", event: "Graphics prep deadline", day: 3, hour: 21, min: 0 },
+  { time: "Fri 9 PM", event: "Rehearsal & testing complete", day: 5, hour: 21, min: 0 },
+  { time: "11:00 AM", event: "Team arrives, setup begins", day: 6, hour: 11, min: 0 },
+  { time: "12:00 PM 🔴", event: "Service begins — GO LIVE", day: 6, hour: 12, min: 0 },
+  { time: "~2:00 PM", event: "Service ends · Wrap up", day: 6, hour: 14, min: 0 },
 ];

@@ -17,9 +17,9 @@ export function Timeline() {
       const min = now.getMinutes();
       const nowMins = day * 24 * 60 + hour * 60 + min;
 
-      // Broadcast week window: Thu through Sat 1:15 PM
-      const windowStart = 4 * 24 * 60; // Thu midnight
-      const windowEnd = 6 * 24 * 60 + 13 * 60 + 15; // Sat 1:15 PM
+      // Broadcast week window: Wed through Sat 2:15 PM
+      const windowStart = 3 * 24 * 60; // Wed midnight
+      const windowEnd = 6 * 24 * 60 + 14 * 60 + 15; // Sat 2:15 PM
       const inWindow = nowMins >= windowStart && nowMins <= windowEnd;
       setIsInWindow(inWindow);
 
@@ -49,7 +49,7 @@ export function Timeline() {
     <div className="glass-panel rounded-xl overflow-hidden">
       <div className="px-4 py-2.5 bg-secondary/60 border-b border-border">
         <h3 className="text-[11px] font-bold uppercase tracking-[1px] text-muted-foreground flex items-center gap-2">
-          🕐 Saturday Timeline
+          🕐 Broadcast Week Timeline
         </h3>
       </div>
       <div className="px-4 py-2">

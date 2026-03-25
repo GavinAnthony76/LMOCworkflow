@@ -4,15 +4,15 @@ function chicagoNow(): Date {
   return new Date(new Date().toLocaleString("en-US", { timeZone: "America/Chicago" }));
 }
 
-function nextSat11am(): Date {
+function nextSatNoon(): Date {
   const now = chicagoNow();
   const day = now.getDay();
   let daysAway = (6 - day + 7) % 7;
   const target = new Date(now);
   target.setDate(now.getDate() + daysAway);
-  target.setHours(11, 0, 0, 0);
-  // If today is Saturday and service is done (after 1:15 PM), next Saturday
-  if (daysAway === 0 && (now.getHours() > 13 || (now.getHours() === 13 && now.getMinutes() > 15))) {
+  target.setHours(12, 0, 0, 0);
+  // If today is Saturday and service is done (after 2:15 PM), next Saturday
+  if (daysAway === 0 && (now.getHours() > 14 || (now.getHours() === 14 && now.getMinutes() > 15))) {
     target.setDate(target.getDate() + 7);
   }
   return target;
@@ -32,14 +32,14 @@ export function Countdown() {
       const hour = now.getHours();
       const nowMin = now.getMinutes();
 
-      // LIVE during service: Sat 11:00 AM – 1:15 PM
-      const isLive = day === 6 && hour >= 11 && (hour < 13 || (hour === 13 && nowMin <= 15));
+      // LIVE during service: Sat 12:00 PM – 2:15 PM
+      const isLive = day === 6 && hour >= 12 && (hour < 14 || (hour === 14 && nowMin <= 15));
       if (isLive) {
         setDisplay({ time: "", label: "Service is on air!", urgency: "live" });
         return;
       }
 
-      const target = nextSat11am();
+      const target = nextSatNoon();
       const diff = target.getTime() - now.getTime();
       const days = Math.floor(diff / 86400000);
       const hrs = Math.floor((diff % 86400000) / 3600000);
@@ -61,16 +61,16 @@ export function Countdown() {
         urgency = "imminent";
       } else if (isToday) {
         time = pad(hrs) + ":" + pad(mins) + ":" + pad(secs);
-        label = "Today — Go Live at 11:00 AM CST";
+        label = "Today — Go Live at 12:00 PM CST";
         urgency = "soon";
       } else if (days < 2) {
         time = days + "d " + pad(hrs) + ":" + pad(mins) + ":" + pad(secs);
-        label = "Tomorrow — Go Live at 11:00 AM CST";
+        label = "Tomorrow — Go Live at 12:00 PM CST";
         urgency = days === 0 ? "soon" : "normal";
       } else {
         time = days + "d " + pad(hrs) + ":" + pad(mins) + ":" + pad(secs);
         const dateLabel = target.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
-        label = "Next: " + dateLabel + " at 11:00 AM CST";
+        label = "Next: " + dateLabel + " at 12:00 PM CST";
         urgency = "normal";
       }
 

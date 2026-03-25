@@ -35,11 +35,11 @@ export function SmartBanner() {
 
       setTimeLabel(formatCSTTime(new Date()));
 
-      if (day === 4) {
-        // Thursday
+      if (day === 3) {
+        // Wednesday
         if (hour < 21) {
           setTiming({
-            message: "It's Thursday — Graphics prep must be complete by 9:00 PM CST tonight.",
+            message: "It's Wednesday — Graphics prep must be complete by 9:00 PM CST tonight.",
             icon: <Calendar className="h-5 w-5" />,
             variant: "warning",
           });
@@ -50,46 +50,55 @@ export function SmartBanner() {
             variant: "urgent",
           });
         }
-      } else if (day === 5) {
-        // Friday
+      } else if (day === 4) {
+        // Thursday
         setTiming({
-          message: "Tomorrow is Saturday Sabbath broadcast. Confirm all pre-production tasks are ready.",
+          message: "Graphics prep should be done. Begin rehearsal planning ahead of Friday's 9:00 PM deadline.",
           icon: <Clock className="h-5 w-5" />,
           variant: "default",
         });
-      } else if (day === 6) {
-        // Saturday
-        if (hour < 8 || (hour === 8 && min < 30)) {
+      } else if (day === 5) {
+        // Friday
+        if (hour < 21) {
           setTiming({
-            message: "Broadcast day! Team arrives at 8:30 AM CST. Prepare your workstation.",
+            message: "It's Friday — Rehearsal and testing must be complete by 9:00 PM CST tonight.",
             icon: <Calendar className="h-5 w-5" />,
             variant: "warning",
           });
-        } else if (hour < 10 || (hour === 10 && min < 45)) {
+        } else {
           setTiming({
-            message: "Setup time — Sabbath School is underway. Complete pre-production tasks before 10:45 AM.",
+            message: "Rehearsal deadline has passed. All systems should be tested and ready for Saturday.",
+            icon: <AlertCircle className="h-5 w-5" />,
+            variant: "urgent",
+          });
+        }
+      } else if (day === 6) {
+        // Saturday
+        if (hour < 11) {
+          setTiming({
+            message: "Broadcast day! Team arrives at 11:00 AM CST. Prepare your workstation.",
+            icon: <Calendar className="h-5 w-5" />,
+            variant: "warning",
+          });
+        } else if (hour === 11) {
+          setTiming({
+            message: "Setup time — Complete all pre-production tasks before 12:00 PM go-live.",
             icon: <Clock className="h-5 w-5" />,
             variant: "default",
           });
-        } else if (hour === 10 && min >= 45) {
-          setTiming({
-            message: "READJUST CAMERA ANGLES NOW — Sabbath School ended. Service begins at 11:00 AM CST.",
-            icon: <AlertCircle className="h-5 w-5 animate-pulse" />,
-            variant: "urgent",
-          });
-        } else if (hour === 10 && min >= 58) {
+        } else if (hour === 11 && min >= 45) {
           setTiming({
             message: `GO LIVE IN ${60 - min} MINUTES — Final checks: cameras, audio, Restream key.`,
             icon: <AlertCircle className="h-5 w-5 animate-pulse" />,
             variant: "urgent",
           });
-        } else if (hour >= 11 && (hour < 13 || (hour === 13 && min <= 15))) {
+        } else if (hour >= 12 && (hour < 14 || (hour === 14 && min <= 15))) {
           setTiming({
             message: "LIVE NOW — Service is on air. Record all cameras + LS6. Manage audio and switching.",
             icon: <div className="h-3 w-3 rounded-full bg-red-500 animate-pulse ring-4 ring-red-500/30" />,
             variant: "urgent",
           });
-        } else if (hour >= 13) {
+        } else if (hour >= 14) {
           setTiming({
             message: "Broadcast complete. Great work! Stop all recordings and confirm files are saved.",
             icon: <CheckCircle2 className="h-5 w-5" />,
@@ -97,9 +106,9 @@ export function SmartBanner() {
           });
         }
       } else {
-        // Sun–Wed or other days
+        // Sun–Tue
         setTiming({
-          message: "Rest and review. Next broadcast prep begins Thursday (Graphics deadline) and Saturday morning.",
+          message: "Rest and review. Next broadcast prep: Graphics by Wednesday 9 PM, Rehearsal by Friday 9 PM.",
           icon: <CheckCircle2 className="h-5 w-5" />,
           variant: "success",
         });

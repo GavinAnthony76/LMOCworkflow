@@ -55,7 +55,7 @@ function nextSaturday(): string {
   if (daysUntil === 0) {
     const hour = now.getHours();
     const min = now.getMinutes();
-    if (hour > 13 || (hour === 13 && min > 15)) {
+    if (hour > 14 || (hour === 14 && min > 15)) {
       daysUntil = 7;
     }
   }
