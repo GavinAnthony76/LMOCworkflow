@@ -36,7 +36,10 @@ function nextSaturday(): string {
   }
   const sat = new Date(now);
   sat.setDate(now.getDate() + daysUntil);
-  return sat.toISOString().split("T")[0];
+  const y = sat.getFullYear();
+  const m = String(sat.getMonth() + 1).padStart(2, "0");
+  const d = String(sat.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
 }
 
 function getCurrentWeekId(): string {
