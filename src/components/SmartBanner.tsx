@@ -80,17 +80,17 @@ export function SmartBanner() {
             icon: <Calendar className="h-5 w-5" />,
             variant: "warning",
           });
-        } else if (hour === 11) {
-          setTiming({
-            message: "Setup time — Complete all pre-production tasks before 12:00 PM go-live.",
-            icon: <Clock className="h-5 w-5" />,
-            variant: "default",
-          });
         } else if (hour === 11 && min >= 45) {
           setTiming({
             message: `GO LIVE IN ${60 - min} MINUTES — Final checks: cameras, audio, Restream key.`,
             icon: <AlertCircle className="h-5 w-5 animate-pulse" />,
             variant: "urgent",
+          });
+        } else if (hour === 11) {
+          setTiming({
+            message: "Setup time — Complete all pre-production tasks before 12:00 PM go-live.",
+            icon: <Clock className="h-5 w-5" />,
+            variant: "default",
           });
         } else if (hour >= 12 && (hour < 16 || (hour === 16 && min <= 15))) {
           setTiming({
