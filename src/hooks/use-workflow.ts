@@ -1,4 +1,29 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
+
+const API_BASE = "/api";
+const POLL_INTERVAL = 4000;
+
+async function fetchSession(weekId: string) {
+  try {
+    const res = await fetch(`${API_BASE}/session?weekId=${weekId}`);
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
+async function pushSession(weekId: string, payload: object) {
+  try {
+    await fetch(`${API_BASE}/session`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ weekId, ...payload }),
+    });
+  } catch {
+    // silent — local state still works if offline
+  }
+}
 import { WORKFLOW_ROLES, getAllPhases, getPhaseTaskIds, getAllTaskIds } from "@/data/workflow";
 
 export type TaskState = {
@@ -89,6 +114,28 @@ export function useWorkflow() {
 
   const [celebratedPhases, setCelebratedPhases] = useState<Set<string>>(new Set());
   const [isNewWeek, setIsNewWeek] = useState(() => checkAndHandleNewWeek());
+  const weekId = getCurrentWeekId();
+  const lastPushedAt = useRef<number>(0);
+
+  // Poll server for shared state every 4 seconds
+  useEffect(() => {
+    async function poll() {
+      const data = await fetchSession(weekId);
+      if (!data) return;
+      if (data.state && Object.keys(data.state).length > 0) {
+        setState(data.state);
+      }
+      if (typeof data.sessionNotes === "string" && data.sessionNotes) {
+        setSessionNotes(data.sessionNotes);
+      }
+      if (data.sessionInfo) {
+        setSessionInfoState((prev) => ({ ...prev, ...data.sessionInfo }));
+      }
+    }
+    poll();
+    const id = setInterval(poll, POLL_INTERVAL);
+    return () => clearInterval(id);
+  }, [weekId]);
 
   useEffect(() => {
     function handleVisibility() {
@@ -100,18 +147,25 @@ export function useWorkflow() {
     return () => document.removeEventListener("visibilitychange", handleVisibility);
   }, []);
 
-  // Persist state
+  // Persist state locally + push to server
   useEffect(() => {
     try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch {}
-  }, [state]);
+    const now = Date.now();
+    if (now - lastPushedAt.current > 500) {
+      lastPushedAt.current = now;
+      pushSession(weekId, { state, sessionNotes, sessionInfo });
+    }
+  }, [state]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     try { window.localStorage.setItem(SESSION_NOTES_KEY, sessionNotes); } catch {}
-  }, [sessionNotes]);
+    pushSession(weekId, { state, sessionNotes, sessionInfo });
+  }, [sessionNotes]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     try { window.localStorage.setItem(SESSION_INFO_KEY, JSON.stringify(sessionInfo)); } catch {}
-  }, [sessionInfo]);
+    pushSession(weekId, { state, sessionNotes, sessionInfo });
+  }, [sessionInfo]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const toggleTask = useCallback((taskId: string, completed: boolean) => {
     setState((prev) => ({
