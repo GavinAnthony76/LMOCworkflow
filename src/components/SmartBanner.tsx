@@ -92,13 +92,13 @@ export function SmartBanner() {
             icon: <AlertCircle className="h-5 w-5 animate-pulse" />,
             variant: "urgent",
           });
-        } else if (hour >= 12 && (hour < 14 || (hour === 14 && min <= 15))) {
+        } else if (hour >= 12 && (hour < 16 || (hour === 16 && min <= 15))) {
           setTiming({
             message: "LIVE NOW — Service is on air. Record all cameras + LS6. Manage audio and switching.",
             icon: <div className="h-3 w-3 rounded-full bg-red-500 animate-pulse ring-4 ring-red-500/30" />,
             variant: "urgent",
           });
-        } else if (hour >= 14) {
+        } else if (hour >= 16) {
           setTiming({
             message: "Broadcast complete. Great work! Stop all recordings and confirm files are saved.",
             icon: <CheckCircle2 className="h-5 w-5" />,

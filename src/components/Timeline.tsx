@@ -19,7 +19,7 @@ export function Timeline() {
 
       // Broadcast week window: Wed through Sat 2:15 PM
       const windowStart = 3 * 24 * 60; // Wed midnight
-      const windowEnd = 6 * 24 * 60 + 14 * 60 + 15; // Sat 2:15 PM
+      const windowEnd = 6 * 24 * 60 + 16 * 60 + 15; // Sat 4:15 PM
       const inWindow = nowMins >= windowStart && nowMins <= windowEnd;
       setIsInWindow(inWindow);
 

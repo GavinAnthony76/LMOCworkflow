@@ -445,5 +445,5 @@ export const TIMELINE_EVENTS = [
   { time: "Fri 9 PM", event: "Rehearsal & testing complete", day: 5, hour: 21, min: 0 },
   { time: "11:00 AM", event: "Team arrives, setup begins", day: 6, hour: 11, min: 0 },
   { time: "12:00 PM 🔴", event: "Service begins — GO LIVE", day: 6, hour: 12, min: 0 },
-  { time: "~2:00 PM", event: "Service ends · Wrap up", day: 6, hour: 14, min: 0 },
+  { time: "~4:00 PM", event: "Service ends · Wrap up", day: 6, hour: 16, min: 0 },
 ];

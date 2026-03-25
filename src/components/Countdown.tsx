@@ -12,7 +12,7 @@ function nextSatNoon(): Date {
   target.setDate(now.getDate() + daysAway);
   target.setHours(12, 0, 0, 0);
   // If today is Saturday and service is done (after 2:15 PM), next Saturday
-  if (daysAway === 0 && (now.getHours() > 14 || (now.getHours() === 14 && now.getMinutes() > 15))) {
+  if (daysAway === 0 && (now.getHours() > 16 || (now.getHours() === 16 && now.getMinutes() > 15))) {
     target.setDate(target.getDate() + 7);
   }
   return target;
@@ -32,8 +32,8 @@ export function Countdown() {
       const hour = now.getHours();
       const nowMin = now.getMinutes();
 
-      // LIVE during service: Sat 12:00 PM – 2:15 PM
-      const isLive = day === 6 && hour >= 12 && (hour < 14 || (hour === 14 && nowMin <= 15));
+      // LIVE during service: Sat 12:00 PM – 4:15 PM
+      const isLive = day === 6 && hour >= 12 && (hour < 16 || (hour === 16 && nowMin <= 15));
       if (isLive) {
         setDisplay({ time: "", label: "Service is on air!", urgency: "live" });
         return;
