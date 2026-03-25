@@ -115,22 +115,17 @@ export function useWorkflow() {
   const [celebratedPhases, setCelebratedPhases] = useState<Set<string>>(new Set());
   const [isNewWeek, setIsNewWeek] = useState(() => checkAndHandleNewWeek());
   const weekId = getCurrentWeekId();
-  const lastPushedAt = useRef<number>(0);
+  const skipPollUntil = useRef<number>(0);
 
   // Poll server for shared state every 4 seconds
   useEffect(() => {
     async function poll() {
+      if (Date.now() < skipPollUntil.current) return;
       const data = await fetchSession(weekId);
       if (!data) return;
-      if (data.state && Object.keys(data.state).length > 0) {
-        setState(data.state);
-      }
-      if (typeof data.sessionNotes === "string" && data.sessionNotes) {
-        setSessionNotes(data.sessionNotes);
-      }
-      if (data.sessionInfo) {
-        setSessionInfoState((prev) => ({ ...prev, ...data.sessionInfo }));
-      }
+      if (data.state !== undefined) setState(data.state);
+      if (typeof data.sessionNotes === "string") setSessionNotes(data.sessionNotes);
+      if (data.sessionInfo) setSessionInfoState((prev) => ({ ...prev, ...data.sessionInfo }));
     }
     poll();
     const id = setInterval(poll, POLL_INTERVAL);
@@ -147,14 +142,11 @@ export function useWorkflow() {
     return () => document.removeEventListener("visibilitychange", handleVisibility);
   }, []);
 
-  // Persist state locally + push to server
+  // Persist state locally + push to server; block polling for 3s to avoid race condition
   useEffect(() => {
     try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch {}
-    const now = Date.now();
-    if (now - lastPushedAt.current > 500) {
-      lastPushedAt.current = now;
-      pushSession(weekId, { state, sessionNotes, sessionInfo });
-    }
+    skipPollUntil.current = Date.now() + 3000;
+    pushSession(weekId, { state, sessionNotes, sessionInfo });
   }, [state]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
