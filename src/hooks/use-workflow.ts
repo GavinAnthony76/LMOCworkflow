@@ -151,11 +151,13 @@ export function useWorkflow() {
 
   useEffect(() => {
     try { window.localStorage.setItem(SESSION_NOTES_KEY, sessionNotes); } catch {}
+    skipPollUntil.current = Date.now() + 3000;
     pushSession(weekId, { state, sessionNotes, sessionInfo });
   }, [sessionNotes]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     try { window.localStorage.setItem(SESSION_INFO_KEY, JSON.stringify(sessionInfo)); } catch {}
+    skipPollUntil.current = Date.now() + 3000;
     pushSession(weekId, { state, sessionNotes, sessionInfo });
   }, [sessionInfo]); // eslint-disable-line react-hooks/exhaustive-deps
 

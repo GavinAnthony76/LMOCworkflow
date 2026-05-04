@@ -440,6 +440,8 @@ export const WORKFLOW_ROLES: Role[] = [
   },
 ];
 
+export const BUMPER_LIST: string[] = [];
+
 export const TIMELINE_EVENTS = [
   { time: "Wed 9 PM", event: "Graphics prep deadline", day: 3, hour: 21, min: 0 },
   { time: "Fri 9 PM", event: "Rehearsal & testing complete", day: 5, hour: 21, min: 0 },

@@ -11,8 +11,7 @@ interface TaskCardProps {
 }
 
 export function TaskCard({ task, completed, onToggle, hasNewGuest }: TaskCardProps) {
-  const isNewTask = task.tags?.some((t) => t.color === "new");
-  const highlight = isNewTask && hasNewGuest;
+  const highlight = false && hasNewGuest; // reserved for future guest-highlight feature
 
   return (
     <div

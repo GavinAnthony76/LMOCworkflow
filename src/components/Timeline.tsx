@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { TIMELINE_EVENTS } from "@/data/workflow";
 
 function chicagoNow(): Date {
@@ -58,9 +58,8 @@ export function Timeline() {
             const isActive = i === activeIndex;
             const isPast = i < activeIndex;
             return (
-              <>
+              <Fragment key={i}>
                 <li
-                  key={i}
                   className={`flex items-center gap-3 py-2.5 text-[12px] ${isActive ? "font-bold" : ""}`}
                 >
                   <span
@@ -83,7 +82,7 @@ export function Timeline() {
                   </span>
                 </li>
                 {showNowAfter && i === activeIndex && (
-                  <li key="now-marker" className="flex items-center gap-3 py-1.5">
+                  <li className="flex items-center gap-3 py-1.5">
                     <span className="min-w-[72px]" />
                     <span className="flex items-center gap-1.5 text-[10px] font-extrabold text-red-500 uppercase tracking-widest">
                       <span className="inline-block h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
@@ -91,7 +90,7 @@ export function Timeline() {
                     </span>
                   </li>
                 )}
-              </>
+              </Fragment>
             );
           })}
         </ul>
