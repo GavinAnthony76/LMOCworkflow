@@ -73,7 +73,7 @@ export const WORKFLOW_ROLES: Role[] = [
             tasks: [
               {
                 id: "td1",
-                title: "Join Slack Huddle — coordinate with the entire broadcast team",
+                title: "Join Slack Huddle — coordinate with the entire broadcast team from your personal machine",
                 tags: [{ label: "Slack", color: "slack" }],
               },
             ],
@@ -89,6 +89,27 @@ export const WORKFLOW_ROLES: Role[] = [
         color: "prepare",
         sections: [
           {
+            label: "Camera & Hardware",
+            tasks: [
+              {
+                id: "td-cam-power",
+                title: "Power on Cameras 1–4 and cooling fans via the web power switch",
+                tags: [{ label: "Camera", color: "camera" }],
+                note: "Access via IP 192.168.1.102 from any Alabama-based server (not your personal machine). Username: admin · Password: Livingmanna1844",
+              },
+              {
+                id: "td4",
+                title: "Position Camera Angles in correct locations",
+                tags: [{ label: "Camera", color: "camera" }],
+              },
+              {
+                id: "td11",
+                title: "Check SD Card Storage — minimum 2 hours available on each card",
+                tags: [{ label: "Camera", color: "camera" }],
+              },
+            ],
+          },
+          {
             label: "Software & Signals",
             tasks: [
               {
@@ -98,18 +119,14 @@ export const WORKFLOW_ROLES: Role[] = [
               },
               {
                 id: "td3",
-                title: "Check all Video and Audio signals through LS6",
+                title: "Check all video and audio signals through LS6",
                 tags: [{ label: "LS6", color: "ls6" }, { label: "Audio", color: "audio" }],
-              },
-              {
-                id: "td4",
-                title: "Position Camera Angles in correct locations",
-                tags: [{ label: "Camera", color: "camera" }],
               },
               {
                 id: "td5",
                 title: "Setup Virtual Guests — add to input list and test video & audio",
                 tags: [{ label: "LS6", color: "ls6" }, { label: "Audio", color: "audio" }],
+                note: "To communicate with virtual guests in the LS6 waiting room, 'red' the \"Broadcast Team (Slack)\" audio channel. Be sure to un-red it once you are done.",
               },
             ],
           },
@@ -118,14 +135,14 @@ export const WORKFLOW_ROLES: Role[] = [
             tasks: [
               {
                 id: "td6",
-                title: "Configure Sound Output to External Headphones (NOT Cam Link 4K)",
+                title: "Configure system sound output to \"External Headphones\" (Apple menu → System Settings → Sound)",
                 tags: [{ label: "Audio", color: "audio" }],
               },
               {
                 id: "td7",
-                title: "Set Audio Monitors: turn OFF (Cameras 1–4, Slides, Ivor mic, Atonte mic, Stream Out); turn ON (External Headphones)",
+                title: "Audio monitors: TURN OFF — Cameras 1–4, Slides, Ivor's mic, Atonte's mic, Stream Out; TURN ON — all others (graphics, guests, etc.)",
                 tags: [{ label: "Audio", color: "audio" }],
-                note: "Ensure only External Headphones monitor channel is active to avoid feedback loops.",
+                note: "All other audio monitors must remain ON so the crew can hear those channels via Slack. Physical studio communication should be routed through the Comms role (studio speakers or earpieces).",
               },
             ],
           },
@@ -142,13 +159,8 @@ export const WORKFLOW_ROLES: Role[] = [
               },
               {
                 id: "td10",
-                title: "Set Restream Key — retrieve and configure from Restream platform",
+                title: "Retrieve and set Restream stream key",
                 tags: [{ label: "Restream", color: "restream" }],
-              },
-              {
-                id: "td11",
-                title: "Check SD Card Storage — minimum 1 hour 20 minutes available on each card",
-                tags: [{ label: "Camera", color: "camera" }],
               },
               {
                 id: "td12",
@@ -174,23 +186,23 @@ export const WORKFLOW_ROLES: Role[] = [
                 id: "td13",
                 title: "Studio Segments: set Ivor and Atonte's mics to RED — always heard by viewers",
                 tags: [{ label: "Audio", color: "audio" }],
-                note: "RED mic status means the mic is live to the audience at all times during studio segments.",
+                note: "RED mic status means the mic is live to the audience at all times during studio segments. Un-Red their mics once the segment is finished — the audience will still hear them otherwise.",
               },
               {
                 id: "td14",
-                title: "Announcements: Keep Atonte Live by RED-ing her mic during the announcement segment",
+                title: "Announcements: Keep Atonte live by RED-ing her mic during the announcement segment",
                 tags: [{ label: "Audio", color: "audio" }],
               },
             ],
           },
           {
-            label: "Recording",
+            label: "Recording & Switching",
             tasks: [
               {
                 id: "td15",
-                title: "Start Sermon Recording on all 4 cameras + LS6",
-                tags: [{ label: "Camera", color: "camera" }, { label: "LS6", color: "ls6" }],
-                note: "Skip guest camera if a guest speaker is presenting — record only in-house cameras.",
+                title: "Start Sermon Recording on LS6",
+                tags: [{ label: "LS6", color: "ls6" }],
+                note: "Comms will start recordings on each camera server. Skip LS6 camera for guest speakers — record only in-house cameras.",
               },
               {
                 id: "td16",
@@ -199,8 +211,8 @@ export const WORKFLOW_ROLES: Role[] = [
               },
               {
                 id: "td17",
-                title: "Stop Recording on all cameras and LS6 after sermon completion",
-                tags: [{ label: "Camera", color: "camera" }, { label: "LS6", color: "ls6" }],
+                title: "Stop LS6 Recording after sermon completion",
+                tags: [{ label: "LS6", color: "ls6" }],
               },
             ],
           },
@@ -208,7 +220,7 @@ export const WORKFLOW_ROLES: Role[] = [
       },
       {
         id: "td-end",
-        title: "End — Wrap Up",
+        title: "Wrap Up",
         shortTitle: "Wrap Up",
         icon: "✅",
         deadline: "📋 Post-Broadcast",
@@ -219,12 +231,19 @@ export const WORKFLOW_ROLES: Role[] = [
             tasks: [
               {
                 id: "td18",
-                title: "Un-Red Studio Mics after broadcast ends — remove all RED status",
+                title: "Un-Red all studio mics after broadcast ends",
                 tags: [{ label: "Audio", color: "audio" }],
               },
               {
+                id: "td-cam-wait",
+                title: "Leave cameras on for ~10 minutes before powering down",
+                tags: [{ label: "Camera", color: "camera" }],
+                note: "Cameras need time to write footage to internal SD cards after a recording session — especially for longer sessions. Powering down too soon risks corrupting the recording.",
+              },
+              {
                 id: "td19",
-                title: "Broadcast Complete! 🎉 — review recordings and confirm all files saved",
+                title: "Confirm all recordings are saved, then power down cameras",
+                tags: [{ label: "Camera", color: "camera" }],
               },
             ],
           },
@@ -251,26 +270,42 @@ export const WORKFLOW_ROLES: Role[] = [
             tasks: [
               {
                 id: "cb1",
-                title: "Set Backdrops — ensure both table and wall backdrops are in place",
+                title: "Set Backdrops — ensure both table and wall backdrops are in place before stream",
               },
               {
                 id: "cb2",
-                title: "Start Slack Huddle from both the LMC-Comms and LS6-Audio machines",
+                title: "Start Slack Huddle from both LMC-Comms and LS6-Audio servers",
                 tags: [{ label: "Slack", color: "slack" }],
+                note: "LMC-Comms input audio: \"MG-XU\" · LS6-Audio input audio: \"Cable Creation\" mic. Verify audio settings are correctly configured on both servers.",
               },
               {
                 id: "cb3",
-                title: "Configure Audio Settings on LMC-Comms — set volume to MAX then lower to 0 to calibrate",
+                title: "Configure earpiece/studio audio — ready to mute/unmute Slack and LS6 audio on Technical Director's command via LMC-Earpiece server",
                 tags: [{ label: "Audio", color: "audio" }],
               },
               {
                 id: "cb4",
-                title: "Setup Sermon Slides and confirm they are projecting correctly",
+                title: "Setup Sermon Slides — confirm they are projecting correctly on the LMC-Slides server",
+              },
+              {
+                id: "cb-slides-refresh",
+                title: "Refresh the sermon slides link in the browser moments before the sermon starts",
+                note: "Ideally refresh during the sermon bumper video to ensure a clean, up-to-date connection.",
               },
               {
                 id: "cb5",
-                title: "Open Restream Chat on the \"LMC – Streaming\" server for studio visibility",
+                title: "Open Restream Chat on the \"LMC – Streaming\" server so comments can be seen from the studio",
                 tags: [{ label: "Restream", color: "restream" }],
+              },
+            ],
+          },
+          {
+            label: "Guest Setup (if applicable)",
+            tasks: [
+              {
+                id: "cb-clark",
+                title: "Danny & Jackie Clark setup — if joining: launch Vimeo guest link in Chrome on LMC-Clark server",
+                note: "Video input: \"CamLink 4k\" · Audio input: \"Volt\". All machine passwords: Livingmanna1844 (PIN: 1844). Ensure they are set up and ready from their end before the service starts.",
               },
             ],
           },
@@ -285,7 +320,27 @@ export const WORKFLOW_ROLES: Role[] = [
         color: "produce",
         sections: [
           {
-            label: "Live Monitoring",
+            label: "Recording",
+            tasks: [
+              {
+                id: "cb-rec-start",
+                title: "RECORD Cameras 1–4: start recording from each camera server at the start of the sermon",
+                tags: [{ label: "Camera", color: "camera" }],
+              },
+              {
+                id: "cb-rec-adjust",
+                title: "Make camera adjustments (lighting, focus, etc.) remotely on Technical Director's command",
+                tags: [{ label: "Camera", color: "camera" }],
+              },
+              {
+                id: "cb-rec-stop",
+                title: "Stop all camera recordings when sermon is complete",
+                tags: [{ label: "Camera", color: "camera" }],
+              },
+            ],
+          },
+          {
+            label: "Live Monitoring & Comms",
             tasks: [
               {
                 id: "cb6",
@@ -294,13 +349,17 @@ export const WORKFLOW_ROLES: Role[] = [
               },
               {
                 id: "cb7",
-                title: "Send messages to the studio team via the Comms server as needed",
+                title: "Send messages to the studio team via LMC-Comms server using Keynote",
                 tags: [{ label: "Slack", color: "slack" }],
+              },
+              {
+                id: "cb-backdrop",
+                title: "Work with Graphics to set up table and wall backdrop for sermon (rotating slides) — start both presentations simultaneously to ensure sync",
               },
               {
                 id: "cb8",
                 title: "Stay ready to take over as Technical Director if needed",
-                note: "Be familiar with all Technical Director steps. In an emergency, you should be able to assume the role immediately.",
+                note: "Be familiar with all Technical Director steps. In an emergency, assume the role immediately.",
               },
             ],
           },
@@ -338,31 +397,30 @@ export const WORKFLOW_ROLES: Role[] = [
         title: "Pre-Production",
         shortTitle: "Pre-Prod",
         icon: "🗓️",
-        deadline: "⏰ Complete by Thursday Night",
+        deadline: "⏰ Complete by Wednesday Night",
         color: "schedule",
         sections: [
           {
-            label: "Graphics Prep — Complete by Thursday 9 PM",
+            label: "Graphics Prep — Complete by Wednesday 9 PM",
             tasks: [
               {
                 id: "gh1",
                 title: "Import Media (videos and graphics) — check Mighty Networks for the show rundown",
-                tags: [{ label: "Thu Deadline", color: "thu" }, { label: "Graphics", color: "graphics" }],
+                tags: [{ label: "Graphics", color: "graphics" }],
               },
               {
                 id: "gh2",
-                title: "Order Graphics correctly according to the show rundown",
-                tags: [{ label: "Thu Deadline", color: "thu" }, { label: "Graphics", color: "graphics" }],
+                title: "Order graphics correctly according to the show rundown",
+                tags: [{ label: "Graphics", color: "graphics" }],
               },
               {
                 id: "gh3",
                 title: "Test All Media — verify all videos and images display correctly",
-                tags: [{ label: "Thu Deadline", color: "thu" }, { label: "Graphics", color: "graphics" }],
+                tags: [{ label: "Graphics", color: "graphics" }],
               },
               {
                 id: "gh4",
-                title: "Clean Up Downloads — move browser downloads folder to trash after importing",
-                tags: [{ label: "Thu Deadline", color: "thu" }],
+                title: "Clean Up Downloads — move browser-downloaded content to trash after adding to ProPresenter",
               },
             ],
           },
@@ -400,14 +458,23 @@ export const WORKFLOW_ROLES: Role[] = [
             label: "Live Graphics",
             tasks: [
               {
+                id: "gh-backdrop",
+                title: "Work with Comms to set up table and wall backdrop for the sermon",
+              },
+              {
                 id: "gh6",
-                title: "Monitor Slack updates for any last-minute changes from the Technical Director",
+                title: "Monitor Slack for any last-minute changes from the Technical Director",
                 tags: [{ label: "Slack", color: "slack" }],
               },
               {
                 id: "gh7",
                 title: "Execute Graphics Transitions per the Technical Director's calls",
                 tags: [{ label: "Graphics", color: "graphics" }],
+              },
+              {
+                id: "gh-slides-backup",
+                title: "Be ready to take over Slides via the Slides server using arrow keys if pastor's clicker fails",
+                note: "Remote into the Slides server and use arrow keys to advance slides on the Technical Director's command.",
               },
               {
                 id: "gh8",

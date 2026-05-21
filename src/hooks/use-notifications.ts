@@ -18,40 +18,40 @@ type ScheduledNotif = {
 // day: 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
 const NOTIFICATIONS: ScheduledNotif[] = [
   {
-    id: "thu-graphics-deadline",
-    day: 4, hour: 20, min: 30,
+    id: "wed-graphics-deadline",
+    day: 3, hour: 20, min: 30,
     title: "🎨 Graphics deadline in 30 min",
     body: "All media must be imported, ordered, and tested by 9:00 PM CST tonight.",
   },
   {
     id: "sat-setup",
-    day: 6, hour: 8, min: 0,
+    day: 6, hour: 10, min: 30,
     title: "📡 Broadcast day — team arrives in 30 min",
-    body: "Team setup begins at 8:30 AM CST. Prepare your workstation.",
+    body: "Team setup begins at 11:00 AM CST. Prepare your workstation.",
   },
   {
     id: "sat-sabbath-school-end",
     day: 6, hour: 10, min: 45,
     title: "📷 Readjust camera angles NOW",
-    body: "Sabbath School has ended. Readjust cameras — service begins at 11:00 AM CST.",
+    body: "Sabbath School has ended. Readjust cameras — service begins at 12:00 PM CST.",
   },
   {
     id: "sat-golive-soon",
-    day: 6, hour: 10, min: 58,
+    day: 6, hour: 11, min: 58,
     title: "⏱ 2 minutes to GO LIVE",
-    body: "Final checks — cameras, audio, Restream key. Service starts at 11:00 AM CST.",
+    body: "Final checks — cameras, audio, Restream key. Service starts at 12:00 PM CST.",
   },
   {
     id: "sat-golive",
-    day: 6, hour: 11, min: 0,
+    day: 6, hour: 12, min: 0,
     title: "🔴 GO LIVE — Service is ON AIR",
     body: "Start sermon recording on all cameras + LS6. You are broadcasting!",
   },
   {
     id: "sat-wrap",
-    day: 6, hour: 12, min: 45,
+    day: 6, hour: 15, min: 45,
     title: "⌛ Wrap-up coming — ~15 min to service end",
-    body: "Service ends around 1:00 PM CST. Prepare to stop recording and wrap up.",
+    body: "Service ends around 4:00 PM CST. Prepare to stop recording and wrap up.",
   },
 ];
 

@@ -220,3 +220,45 @@ To replicate this setup for a new LMOC ministry checklist app:
 ---
 
 *Power Line Producer Workflow · Living Manna Church · Built March 2026*
+
+---
+
+## LMOC Broadcast Workflow — Checklist Update (May 2026)
+
+Updated all three role checklists from the "LMOC Broadcast Team Checklist updated.docx" source document.
+
+### Technical Director — New & Updated Tasks
+| Change | Detail |
+|--------|--------|
+| New task | Power on Cameras 1–4 and cooling fans via web power switch (IP 192.168.1.102 from Alabama servers) |
+| Updated | SD card minimum storage: 1hr 20min → **2 hours** per card |
+| Updated | Audio monitor list now explicitly names Ivor's mic, Atonte's mic, and Stream Out as OFF; clarifies all others stay ON so crew can hear via Slack |
+| Updated | Virtual guest communication: 'red' the "Broadcast Team (Slack)" audio channel to speak to guests in the LS6 waiting room; physical studio comms routed through Comms role |
+| New task (post) | Leave cameras powered on ~10 minutes after sermon ends before shutting down — cameras need time to write footage to SD cards |
+| Updated | Camera recording during sermon now explicitly split: Comms records via each camera server; TD records LS6 |
+
+### Comms / Backup Director — New & Updated Tasks
+| Change | Detail |
+|--------|--------|
+| Updated | Audio input specifics: LMC-Comms = "MG-XU" mic; LS6-Audio = "Cable Creation" mic |
+| New task | Refresh sermon slides link moments before sermon starts (ideally during bumper video) |
+| New task | Mute/unmute Slack and LS6 audio in earpiece and/or studio on TD's command via LMC-Earpiece server |
+| New tasks | RECORD Cameras 1–4 from each server at sermon start; adjust remotely on TD's command; stop when sermon ends |
+| New task | Work with Graphics to sync table and wall backdrop for sermon (rotating slides) — start both presentations simultaneously |
+| New task | Danny & Jackie Clark setup: launch Vimeo guest link in Chrome on LMC-Clark server; video = CamLink 4k, audio = Volt |
+
+### Graphics Host — New & Updated Tasks
+| Change | Detail |
+|--------|--------|
+| **Deadline changed** | Graphics prep deadline moved from **Thursday** night → **Wednesday** night (9 PM CST) |
+| New task | Work with Comms to set up table and wall backdrop for the sermon |
+| New task | Be ready to take over Slides via Slides server using arrow keys if pastor's clicker fails |
+
+### Notifications Updated
+- Graphics deadline notification moved from Thursday 8:30 PM → **Wednesday 8:30 PM**
+- Team setup reminder corrected to 10:30 AM (30 min before 11 AM arrival)
+- Wrap-up notification corrected to 3:45 PM (15 min before 4 PM service end)
+
+### BumperList Wired Up
+- `BumperListWidget` was built but not connected. Added bumper state (used set + custom bumpers) to `useWorkflow`, with localStorage persistence, export/import inclusion, and Reset All clearing.
+- Widget now appears in the sidebar on the Home page.

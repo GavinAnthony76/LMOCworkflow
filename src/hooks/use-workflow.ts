@@ -42,6 +42,8 @@ const STORAGE_KEY = "lmoc-broadcast-workflow-state";
 const SESSION_NOTES_KEY = "lmoc-broadcast-session-notes";
 const SESSION_INFO_KEY = "lmoc-broadcast-session-info";
 const WEEK_KEY = "lmoc-broadcast-current-week";
+const BUMPER_USED_KEY = "lmoc-broadcast-bumper-used";
+const CUSTOM_BUMPERS_KEY = "lmoc-broadcast-custom-bumpers";
 
 function chicagoNow(): Date {
   return new Date(new Date().toLocaleString("en-US", { timeZone: "America/Chicago" }));
@@ -112,6 +114,24 @@ export function useWorkflow() {
     }
   });
 
+  const [bumperUsed, setBumperUsed] = useState<Set<string>>(() => {
+    try {
+      const item = window.localStorage.getItem(BUMPER_USED_KEY);
+      return item ? new Set(JSON.parse(item)) : new Set<string>();
+    } catch {
+      return new Set<string>();
+    }
+  });
+
+  const [customBumpers, setCustomBumpers] = useState<string[]>(() => {
+    try {
+      const item = window.localStorage.getItem(CUSTOM_BUMPERS_KEY);
+      return item ? JSON.parse(item) : [];
+    } catch {
+      return [];
+    }
+  });
+
   const [celebratedPhases, setCelebratedPhases] = useState<Set<string>>(new Set());
   const [isNewWeek, setIsNewWeek] = useState(() => checkAndHandleNewWeek());
   const weekId = getCurrentWeekId();
@@ -160,6 +180,14 @@ export function useWorkflow() {
     skipPollUntil.current = Date.now() + 3000;
     pushSession(weekId, { state, sessionNotes, sessionInfo });
   }, [sessionInfo]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    try { window.localStorage.setItem(BUMPER_USED_KEY, JSON.stringify([...bumperUsed])); } catch {}
+  }, [bumperUsed]);
+
+  useEffect(() => {
+    try { window.localStorage.setItem(CUSTOM_BUMPERS_KEY, JSON.stringify(customBumpers)); } catch {}
+  }, [customBumpers]);
 
   const toggleTask = useCallback((taskId: string, completed: boolean) => {
     setState((prev) => ({
@@ -215,6 +243,29 @@ export function useWorkflow() {
   const resetAll = useCallback(() => {
     setState({});
     setCelebratedPhases(new Set());
+    setBumperUsed(new Set());
+    setCustomBumpers([]);
+  }, []);
+
+  const toggleBumper = useCallback((name: string, used: boolean) => {
+    setBumperUsed((prev) => {
+      const next = new Set(prev);
+      if (used) next.add(name); else next.delete(name);
+      return next;
+    });
+  }, []);
+
+  const resetBumpers = useCallback(() => {
+    setBumperUsed(new Set());
+  }, []);
+
+  const addCustomBumper = useCallback((name: string) => {
+    setCustomBumpers((prev) => prev.includes(name) ? prev : [...prev, name]);
+  }, []);
+
+  const removeCustomBumper = useCallback((name: string) => {
+    setCustomBumpers((prev) => prev.filter((b) => b !== name));
+    setBumperUsed((prev) => { const next = new Set(prev); next.delete(name); return next; });
   }, []);
 
   const getPhaseProgress = useCallback(
@@ -290,6 +341,8 @@ export function useWorkflow() {
       state: (() => { try { return JSON.parse(window.localStorage.getItem(STORAGE_KEY) || "{}"); } catch { return {}; } })(),
       sessionNotes: window.localStorage.getItem(SESSION_NOTES_KEY) || "",
       sessionInfo: (() => { try { return JSON.parse(window.localStorage.getItem(SESSION_INFO_KEY) || "null"); } catch { return null; } })(),
+      bumperUsed: (() => { try { return JSON.parse(window.localStorage.getItem(BUMPER_USED_KEY) || "[]"); } catch { return []; } })(),
+      customBumpers: (() => { try { return JSON.parse(window.localStorage.getItem(CUSTOM_BUMPERS_KEY) || "[]"); } catch { return []; } })(),
     };
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
@@ -310,6 +363,8 @@ export function useWorkflow() {
         if (typeof data.sessionNotes === "string") window.localStorage.setItem(SESSION_NOTES_KEY, data.sessionNotes);
         if (data.sessionInfo) window.localStorage.setItem(SESSION_INFO_KEY, JSON.stringify(data.sessionInfo));
         if (data.weekId) window.localStorage.setItem(WEEK_KEY, data.weekId);
+        if (Array.isArray(data.bumperUsed)) window.localStorage.setItem(BUMPER_USED_KEY, JSON.stringify(data.bumperUsed));
+        if (Array.isArray(data.customBumpers)) window.localStorage.setItem(CUSTOM_BUMPERS_KEY, JSON.stringify(data.customBumpers));
         window.location.reload();
       } catch {
         alert("Invalid file. Please select a valid LMOC Broadcast export file.");
@@ -323,6 +378,8 @@ export function useWorkflow() {
     setCelebratedPhases(new Set());
     setSessionNotes("");
     setSessionInfoState({ broadcastDate: nextSaturday(), speakerName: "", tdName: "" });
+    setBumperUsed(new Set());
+    setCustomBumpers([]);
     window.localStorage.setItem(WEEK_KEY, getCurrentWeekId());
     setIsNewWeek(false);
   }, []);
@@ -351,6 +408,12 @@ export function useWorkflow() {
     setSessionNotes,
     sessionInfo,
     setSessionInfo,
+    bumperUsed,
+    toggleBumper,
+    resetBumpers,
+    customBumpers,
+    addCustomBumper,
+    removeCustomBumper,
     isNewWeek,
     startNewWeek,
     dismissNewWeek,

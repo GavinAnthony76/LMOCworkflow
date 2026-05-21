@@ -11,6 +11,7 @@ import { SessionNotes } from "@/components/SessionNotes";
 import { LiveClock } from "@/components/LiveClock";
 import { SessionHeader } from "@/components/SessionHeader";
 import { SessionRecap } from "@/components/SessionRecap";
+import { BumperListWidget } from "@/components/BumperList";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
@@ -37,6 +38,12 @@ export default function Home() {
     setSessionNotes,
     sessionInfo,
     setSessionInfo,
+    bumperUsed,
+    toggleBumper,
+    resetBumpers,
+    customBumpers,
+    addCustomBumper,
+    removeCustomBumper,
     isNewWeek,
     startNewWeek,
     dismissNewWeek,
@@ -247,6 +254,14 @@ export default function Home() {
               totalPhases={totalPhases}
               percentage={totalProgress.percentage}
               nextAction={nextAction}
+            />
+            <BumperListWidget
+              bumperUsed={bumperUsed}
+              onToggle={toggleBumper}
+              onReset={resetBumpers}
+              customBumpers={customBumpers}
+              onAddCustom={addCustomBumper}
+              onRemoveCustom={removeCustomBumper}
             />
             <SessionRecap
               state={state}
