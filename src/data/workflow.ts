@@ -234,46 +234,45 @@ export const WORKFLOW_ROLES: Role[] = [
         color: "prepare",
         sections: [
           {
-            label: "Studio Setup",
+            label: "Pre-Production Checklist",
             tasks: [
               {
                 id: "cb1",
-                title: "Set Backdrops — ensure both table and wall backdrops are in place before stream",
+                title: "Ensure both table and wall backdrops are set correctly before the start of stream (change to sermon backdrops after sabbath school/announcements)",
               },
               {
                 id: "cb2",
-                title: "Start Slack Huddle from both LMC-Comms and LS6-Audio servers",
+                title: "Start \"huddle\" in Slack in the #broadcast-team group and join the huddle from \"LMC-Comms\" and \"LS6-Audio\" servers",
                 tags: [{ label: "Slack", color: "slack" }],
-                note: "LMC-Comms input audio: \"MG-XU\" · LS6-Audio input audio: \"Cable Creation\" mic. Verify audio settings are correctly configured on both servers.",
-              },
-              {
-                id: "cb3",
-                title: "Configure earpiece/studio audio — ready to mute/unmute Slack and LS6 audio on Technical Director's command via LMC-Earpiece server",
-                tags: [{ label: "Audio", color: "audio" }],
+                note: "Be sure audio settings are correctly configured. The input audio for \"LMC-Comms\" should be set to \"MG-XU\". The input audio for \"LS6-Audio\" should be set to \"Cable Creation\" mic.",
               },
               {
                 id: "cb4",
-                title: "Setup Sermon Slides — confirm they are projecting correctly on the LMC-Slides server",
+                title: "Ensure sermon slides are projecting on the \"LMC-Slides\" server before the start of the sermon",
+                note: "Be sure to refresh the link in the browser moments before the sermon starts (ideally during the sermon bumper video).",
               },
               {
-                id: "cb-slides-refresh",
-                title: "Refresh the sermon slides link in the browser moments before the sermon starts",
-                note: "Ideally refresh during the sermon bumper video to ensure a clean, up-to-date connection.",
+                id: "cb7",
+                title: "Be ready to transmit messages via the LMC-Comms server to talent in studio during stream (using Keynote)",
+              },
+              {
+                id: "cb3",
+                title: "Be ready to mute/unmute both Slack and LS6 audio in earpiece and/or studio (audible) audio using the LMC-Earpiece server on Technical Director's command",
+                tags: [{ label: "Audio", color: "audio" }],
+              },
+              {
+                id: "cb8",
+                title: "Be ready to jump in and take over the technical director's position during the stream, should it become necessary",
               },
               {
                 id: "cb5",
-                title: "Open Restream Chat on the \"LMC – Streaming\" server so comments can be seen from the studio",
+                title: "Ensure Restream is opened on the \"LMC – Streaming\" server (to the \"chat\" tab) before the stream starts so that comments can be seen from the studio",
                 tags: [{ label: "Restream", color: "restream" }],
               },
-            ],
-          },
-          {
-            label: "Guest Setup (if applicable)",
-            tasks: [
               {
                 id: "cb-clark",
-                title: "Danny & Jackie Clark setup — if joining: launch Vimeo guest link in Chrome on LMC-Clark server",
-                note: "Video input: \"CamLink 4k\" · Audio input: \"Volt\". All machine passwords: Livingmanna1844 (PIN: 1844). Ensure they are set up and ready from their end before the service starts.",
+                title: "If Danny and Jackie Clark are joining the stream: ensure they are set up and ready from their end — launch the Vimeo guest link from Google Chrome on their dedicated server (LMC-Clark)",
+                note: "Their video input signal should be set to \"CamLink 4k\" and their audio should be set to the \"Volt\" audio. Passwords for all machines: Livingmanna1844. If machine asks for a pin, it would be 1844.",
               },
             ],
           },
@@ -288,46 +287,21 @@ export const WORKFLOW_ROLES: Role[] = [
         color: "produce",
         sections: [
           {
-            label: "Recording",
+            label: "During Production",
             tasks: [
               {
                 id: "cb-rec-start",
-                title: "RECORD Cameras 1–4: start recording from each camera server at the start of the sermon",
-                tags: [{ label: "Camera", color: "camera" }],
-              },
-              {
-                id: "cb-rec-adjust",
-                title: "Make camera adjustments (lighting, focus, etc.) remotely on Technical Director's command",
+                title: "RECORD Cameras 1–4 from each server upon the start of the sermon — remote into these servers to make any camera adjustments (lighting, focus, etc.) based on the Technical Director's wishes",
                 tags: [{ label: "Camera", color: "camera" }],
               },
               {
                 id: "cb-rec-stop",
-                title: "Stop all camera recordings when sermon is complete",
+                title: "Stop recordings when sermon is complete",
                 tags: [{ label: "Camera", color: "camera" }],
-              },
-            ],
-          },
-          {
-            label: "Live Monitoring & Comms",
-            tasks: [
-              {
-                id: "cb6",
-                title: "Monitor Slack for updates and changes from the Technical Director",
-                tags: [{ label: "Slack", color: "slack" }],
-              },
-              {
-                id: "cb7",
-                title: "Send messages to the studio team via LMC-Comms server using Keynote",
-                tags: [{ label: "Slack", color: "slack" }],
               },
               {
                 id: "cb-backdrop",
-                title: "Work with Graphics to set up table and wall backdrop for sermon (rotating slides) — start both presentations simultaneously to ensure sync",
-              },
-              {
-                id: "cb8",
-                title: "Stay ready to take over as Technical Director if needed",
-                note: "Be familiar with all Technical Director steps. In an emergency, assume the role immediately.",
+                title: "Work with whoever is in the Graphics role to setup the table and wall backdrop for the sermon (rotating slides) — be sure both presentations are started simultaneously to ensure proper sync",
               },
             ],
           },
@@ -335,14 +309,14 @@ export const WORKFLOW_ROLES: Role[] = [
       },
       {
         id: "cb-post",
-        title: "Post-Production",
-        shortTitle: "Wrap Up",
+        title: "Post",
+        shortTitle: "Post",
         icon: "✅",
         deadline: "📋 Wrap Up",
         color: "connect",
         sections: [
           {
-            label: "Wrap Up",
+            label: "Post",
             tasks: [
               {
                 id: "cb9",
