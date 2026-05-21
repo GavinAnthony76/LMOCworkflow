@@ -343,26 +343,26 @@ export const WORKFLOW_ROLES: Role[] = [
         color: "schedule",
         sections: [
           {
-            label: "Graphics Prep — Complete by Wednesday 9 PM",
+            label: "Graphics Prep — Complete by Wednesday Night",
             tasks: [
               {
                 id: "gh1",
-                title: "Import Media (videos and graphics) — check Mighty Networks for the show rundown",
+                title: "Import all videos and graphics necessary for weekly sabbath stream. Reference the rundown sheet from the Mighty Networks platform for media sources.",
                 tags: [{ label: "Graphics", color: "graphics" }],
               },
               {
                 id: "gh2",
-                title: "Order graphics correctly according to the show rundown",
+                title: "Ensure all graphics are correctly ordered and accounted for by no later than Wednesday night.",
                 tags: [{ label: "Graphics", color: "graphics" }],
               },
               {
                 id: "gh3",
-                title: "Test All Media — verify all videos and images display correctly",
+                title: "Ensure that all videos play through and all images display successfully.",
                 tags: [{ label: "Graphics", color: "graphics" }],
               },
               {
                 id: "gh4",
-                title: "Clean Up Downloads — move browser-downloaded content to trash after adding to ProPresenter",
+                title: "If any graphics content has been downloaded to the graphics server from an internet browser, be sure to move it to trash after it has been added to ProPresenter.",
               },
             ],
           },
@@ -377,11 +377,11 @@ export const WORKFLOW_ROLES: Role[] = [
         color: "prepare",
         sections: [
           {
-            label: "Pre-Service",
+            label: "Before Service",
             tasks: [
               {
                 id: "gh5",
-                title: "Join Slack Huddle before service begins to coordinate with the team",
+                title: "Join the \"huddle\" in Slack for the service from your personal machine.",
                 tags: [{ label: "Slack", color: "slack" }],
               },
             ],
@@ -397,30 +397,21 @@ export const WORKFLOW_ROLES: Role[] = [
         color: "produce",
         sections: [
           {
-            label: "Live Graphics",
+            label: "During Production",
             tasks: [
               {
-                id: "gh-backdrop",
-                title: "Work with Comms to set up table and wall backdrop for the sermon",
-              },
-              {
-                id: "gh6",
-                title: "Monitor Slack for any last-minute changes from the Technical Director",
-                tags: [{ label: "Slack", color: "slack" }],
-              },
-              {
                 id: "gh7",
-                title: "Execute Graphics Transitions per the Technical Director's calls",
+                title: "Make necessary graphic transitions during the stream according to the technical director's call.",
                 tags: [{ label: "Graphics", color: "graphics" }],
               },
               {
-                id: "gh-slides-backup",
-                title: "Be ready to take over Slides via the Slides server using arrow keys if pastor's clicker fails",
-                note: "Remote into the Slides server and use arrow keys to advance slides on the Technical Director's command.",
+                id: "gh-backdrop",
+                title: "Work with whoever is in the Comms role to setup the table and wall backdrop for the sermon.",
               },
               {
-                id: "gh8",
-                title: "Adapt to Changes On-the-Fly — stay flexible for any last-minute adjustments",
+                id: "gh-slides-backup",
+                title: "Be ready to take over controls for Slides during sermon (via Slides server) using arrow keys, should pastor's clicker fail.",
+                note: "Note: Everyone in each of these roles should be continually tuned into Slack for any updates or last-minute changes and be ready to adapt to these changes on-the-fly.",
               },
             ],
           },
@@ -428,18 +419,18 @@ export const WORKFLOW_ROLES: Role[] = [
       },
       {
         id: "gh-post",
-        title: "Post-Production",
-        shortTitle: "Wrap Up",
+        title: "Post",
+        shortTitle: "Post",
         icon: "✅",
         deadline: "📋 Wrap Up",
         color: "connect",
         sections: [
           {
-            label: "Wrap Up",
+            label: "Post",
             tasks: [
               {
                 id: "gh9",
-                title: "Broadcast Complete! 🎉 — begin preparing next week's graphics and media",
+                title: "Broadcast Complete! 🎉 — begin preparing next week's graphics and media.",
               },
             ],
           },
