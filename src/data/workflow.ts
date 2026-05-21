@@ -73,7 +73,7 @@ export const WORKFLOW_ROLES: Role[] = [
             tasks: [
               {
                 id: "td1",
-                title: "Join Slack Huddle — coordinate with the entire broadcast team from your personal machine",
+                title: "Join the \"huddle\" in Slack for the service from your personal machine",
                 tags: [{ label: "Slack", color: "slack" }],
               },
             ],
@@ -89,83 +89,77 @@ export const WORKFLOW_ROLES: Role[] = [
         color: "prepare",
         sections: [
           {
-            label: "Camera & Hardware",
-            tasks: [
-              {
-                id: "td-cam-power",
-                title: "Power on Cameras 1–4 and cooling fans via the web power switch",
-                tags: [{ label: "Camera", color: "camera" }],
-                note: "Access via IP 192.168.1.102 from any Alabama-based server (not your personal machine). Username: admin · Password: Livingmanna1844",
-              },
-              {
-                id: "td4",
-                title: "Position Camera Angles in correct locations",
-                tags: [{ label: "Camera", color: "camera" }],
-              },
-              {
-                id: "td11",
-                title: "Check SD Card Storage — minimum 2 hours available on each card",
-                tags: [{ label: "Camera", color: "camera" }],
-              },
-            ],
-          },
-          {
-            label: "Software & Signals",
+            label: "Pre-Production Checklist",
             tasks: [
               {
                 id: "td2",
-                title: "Update LiveStream Studio 6 to the latest version",
+                title: "LiveStream Studio 6 is up to date",
                 tags: [{ label: "LS6", color: "ls6" }],
               },
               {
+                id: "td-cam-power",
+                title: "Cameras 1–4 and cooling fans for each camera are powered on",
+                tags: [{ label: "Camera", color: "camera" }],
+                note: "Power on via the web power switch using IP address 192.168.1.102. Must be done from any of the servers based in Alabama, not your personal machine. Username: admin · Password: Livingmanna1844",
+              },
+              {
                 id: "td3",
-                title: "Check all video and audio signals through LS6",
+                title: "All video/audio signals are seen and heard through LS6",
                 tags: [{ label: "LS6", color: "ls6" }, { label: "Audio", color: "audio" }],
               },
               {
-                id: "td5",
-                title: "Setup Virtual Guests — add to input list and test video & audio",
-                tags: [{ label: "LS6", color: "ls6" }, { label: "Audio", color: "audio" }],
-                note: "To communicate with virtual guests in the LS6 waiting room, 'red' the \"Broadcast Team (Slack)\" audio channel. Be sure to un-red it once you are done.",
+                id: "td4",
+                title: "All camera angles are in their correct positions",
+                tags: [{ label: "Camera", color: "camera" }],
+                note: "Readjust angles after Sabbath School — see the During Production phase.",
               },
-            ],
-          },
-          {
-            label: "Audio Configuration",
-            tasks: [
+              {
+                id: "td5a",
+                title: "All virtual guests are added to the video input list",
+                tags: [{ label: "LS6", color: "ls6" }],
+              },
+              {
+                id: "td5b",
+                title: "All virtual guests can be seen and heard prior to the start of the broadcast",
+                tags: [{ label: "LS6", color: "ls6" }, { label: "Audio", color: "audio" }],
+              },
               {
                 id: "td6",
-                title: "Configure system sound output to \"External Headphones\" (Apple menu → System Settings → Sound)",
+                title: "System sound output is set to \"External Headphones\" (Apple Logo → System Settings → Sound)",
                 tags: [{ label: "Audio", color: "audio" }],
               },
               {
                 id: "td7",
-                title: "Audio monitors: TURN OFF — Cameras 1–4, Slides, Ivor's mic, Atonte's mic, Stream Out; TURN ON — all others (graphics, guests, etc.)",
+                title: "Cameras 1–4, \"Slides\", Ivor's mic, Atonte's mic, and \"Stream Out\" audio monitors are TURNED OFF; all other audio monitors are TURNED ON",
                 tags: [{ label: "Audio", color: "audio" }],
-                note: "All other audio monitors must remain ON so the crew can hear those channels via Slack. Physical studio communication should be routed through the Comms role (studio speakers or earpieces).",
+                note: "All other audio monitors should remain ON to ensure the crew can hear these channels via Slack.",
               },
-            ],
-          },
-          {
-            label: "Graphics & Stream Setup",
-            tasks: [
               {
                 id: "td8",
-                title: "Configure Lower Thirds with correct name spelling for all participants",
+                title: "Names/info (with correct spelling) for lower thirds are correctly configured (if applicable)",
               },
               {
                 id: "td9",
-                title: "Design Guest View Grids if applicable",
+                title: "Guest view grids are correctly set and designed (if applicable)",
               },
               {
                 id: "td10",
-                title: "Retrieve and set Restream stream key",
+                title: "Stream key is retrieved and set (from Restream)",
                 tags: [{ label: "Restream", color: "restream" }],
               },
               {
-                id: "td12",
-                title: "Readjust Camera Angles after Sabbath School ends",
-                tags: [{ label: "Camera", color: "camera" }, { label: "10:45 AM", color: "time" }],
+                id: "td11",
+                title: "SD cards are inserted into cameras and adequate storage is available for recording (at least 2hrs on each card)",
+                tags: [{ label: "Camera", color: "camera" }],
+              },
+              {
+                id: "td-vguest-comms",
+                title: "To verbally communicate with virtual guests in the LS6 waiting room: 'red' the \"Broadcast Team (Slack)\" audio channel — be sure to \"un-red\" it once done",
+                tags: [{ label: "Slack", color: "slack" }, { label: "Audio", color: "audio" }],
+              },
+              {
+                id: "td-studio-comms",
+                title: "To communicate with those physically in the studio: give the order to the Comms role — they will activate audio via house speakers or earpieces",
               },
             ],
           },
@@ -173,46 +167,30 @@ export const WORKFLOW_ROLES: Role[] = [
       },
       {
         id: "td-prod",
-        title: "Production",
+        title: "During Production",
         shortTitle: "Live",
         icon: "🔴",
         deadline: "🔴 Live Broadcast",
         color: "produce",
         sections: [
           {
-            label: "Studio Mic Control",
+            label: "During Production",
             tasks: [
               {
                 id: "td13",
-                title: "Studio Segments: set Ivor and Atonte's mics to RED — always heard by viewers",
+                title: "FOR STUDIO SEGMENTS: Ivor and Atonte's mics should be \"RED\" to ensure they are always heard when live",
                 tags: [{ label: "Audio", color: "audio" }],
-                note: "RED mic status means the mic is live to the audience at all times during studio segments. Un-Red their mics once the segment is finished — the audience will still hear them otherwise.",
+                note: "Be sure to \"Un-Red\" their mics once they are finished with the segment — otherwise the audience will still be able to hear them.",
               },
               {
                 id: "td14",
-                title: "Announcements: Keep Atonte live by RED-ing her mic during the announcement segment",
+                title: "FOR ANNOUNCEMENTS SEGMENT: \"red\" Atonte's mic to ensure she is still heard by the audience when switching to the graphics signal",
                 tags: [{ label: "Audio", color: "audio" }],
               },
-            ],
-          },
-          {
-            label: "Recording & Switching",
-            tasks: [
               {
-                id: "td15",
-                title: "Start Sermon Recording on LS6",
-                tags: [{ label: "LS6", color: "ls6" }],
-                note: "Comms will start recordings on each camera server. Skip LS6 camera for guest speakers — record only in-house cameras.",
-              },
-              {
-                id: "td16",
-                title: "Live Switching & Monitoring — manage camera cuts and audio throughout the service",
-                tags: [{ label: "Camera", color: "camera" }, { label: "LS6", color: "ls6" }],
-              },
-              {
-                id: "td17",
-                title: "Stop LS6 Recording after sermon completion",
-                tags: [{ label: "LS6", color: "ls6" }],
+                id: "td12",
+                title: "After Sabbath School, readjust camera angles for sermon",
+                tags: [{ label: "Camera", color: "camera" }],
               },
             ],
           },
@@ -220,30 +198,20 @@ export const WORKFLOW_ROLES: Role[] = [
       },
       {
         id: "td-end",
-        title: "Wrap Up",
-        shortTitle: "Wrap Up",
+        title: "Post",
+        shortTitle: "Post",
         icon: "✅",
         deadline: "📋 Post-Broadcast",
         color: "connect",
         sections: [
           {
-            label: "Post-Broadcast",
+            label: "Post",
             tasks: [
               {
-                id: "td18",
-                title: "Un-Red all studio mics after broadcast ends",
-                tags: [{ label: "Audio", color: "audio" }],
-              },
-              {
                 id: "td-cam-wait",
-                title: "Leave cameras on for ~10 minutes before powering down",
+                title: "Don't power down the cameras immediately after the sermon — leave them on for about 10 minutes after the recording ends",
                 tags: [{ label: "Camera", color: "camera" }],
-                note: "Cameras need time to write footage to internal SD cards after a recording session — especially for longer sessions. Powering down too soon risks corrupting the recording.",
-              },
-              {
-                id: "td19",
-                title: "Confirm all recordings are saved, then power down cameras",
-                tags: [{ label: "Camera", color: "camera" }],
+                note: "Cameras often take time to successfully write footage to the internal cards after a recording session, especially longer sessions.",
               },
             ],
           },
