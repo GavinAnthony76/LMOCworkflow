@@ -129,6 +129,11 @@ export const WORKFLOW_ROLES: Role[] = [
                 tags: [{ label: "Audio", color: "audio" }],
               },
               {
+                id: "td-multiscreen",
+                title: "Multi screens are correctly configured in LS6 (LS6 Settings → Multi Screen): CamLink 4K and Samsung should both be listed as connected displays and both set to \"Program Output\"",
+                tags: [{ label: "LS6", color: "ls6" }],
+              },
+              {
                 id: "td7",
                 title: "Cameras 1–4, \"Slides\", Ivor's mic, Atonte's mic, and \"Stream Out\" audio monitors are TURNED OFF; all other audio monitors are TURNED ON",
                 tags: [{ label: "Audio", color: "audio" }],
