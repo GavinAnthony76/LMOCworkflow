@@ -51,24 +51,46 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   if (req.method === "PATCH") {
-    const { weekId, state, sessionNotes, sessionInfo } = req.body;
+    const { weekId, state, sessionNotes, sessionInfo, forceOverwrite } = req.body;
     if (!weekId) return res.status(400).json({ error: "weekId required" });
 
-    await sql`
-      INSERT INTO workflow_sessions (week_id, state, session_notes, session_info, updated_at)
-      VALUES (
-        ${weekId},
-        ${JSON.stringify(state ?? {})}::jsonb,
-        ${sessionNotes ?? ""},
-        ${sessionInfo ? JSON.stringify(sessionInfo) : null}::jsonb,
-        NOW()
-      )
-      ON CONFLICT (week_id) DO UPDATE SET
-        state = EXCLUDED.state,
-        session_notes = EXCLUDED.session_notes,
-        session_info = COALESCE(EXCLUDED.session_info, workflow_sessions.session_info),
-        updated_at = NOW()
-    `;
+    if (forceOverwrite) {
+      // Full overwrite — used for week reset so all devices clear together
+      await sql`
+        INSERT INTO workflow_sessions (week_id, state, session_notes, session_info, updated_at)
+        VALUES (
+          ${weekId},
+          ${JSON.stringify(state ?? {})}::jsonb,
+          ${sessionNotes ?? ""},
+          ${sessionInfo ? JSON.stringify(sessionInfo) : null}::jsonb,
+          NOW()
+        )
+        ON CONFLICT (week_id) DO UPDATE SET
+          state = EXCLUDED.state,
+          session_notes = EXCLUDED.session_notes,
+          session_info = COALESCE(EXCLUDED.session_info, workflow_sessions.session_info),
+          updated_at = NOW()
+      `;
+    } else {
+      // Merge task state so concurrent pushes from different devices can't clobber each other.
+      // JSONB || keeps every key from both sides; right-side wins on key conflicts.
+      // session_notes and session_info are always replaced (last-write-wins is fine for those).
+      await sql`
+        INSERT INTO workflow_sessions (week_id, state, session_notes, session_info, updated_at)
+        VALUES (
+          ${weekId},
+          ${JSON.stringify(state ?? {})}::jsonb,
+          ${sessionNotes ?? ""},
+          ${sessionInfo ? JSON.stringify(sessionInfo) : null}::jsonb,
+          NOW()
+        )
+        ON CONFLICT (week_id) DO UPDATE SET
+          state = workflow_sessions.state || EXCLUDED.state,
+          session_notes = EXCLUDED.session_notes,
+          session_info = COALESCE(EXCLUDED.session_info, workflow_sessions.session_info),
+          updated_at = NOW()
+      `;
+    }
 
     return res.status(200).json({ ok: true });
   }

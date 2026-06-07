@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 
 const API_BASE = "/api";
-const POLL_INTERVAL = 4000;
+const POLL_INTERVAL = 1500;
 
 async function fetchSession(weekId: string) {
   try {
@@ -13,12 +13,12 @@ async function fetchSession(weekId: string) {
   }
 }
 
-async function pushSession(weekId: string, payload: object) {
+async function pushSession(weekId: string, payload: object, forceOverwrite = false) {
   try {
     await fetch(`${API_BASE}/session`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ weekId, ...payload }),
+      body: JSON.stringify({ weekId, ...payload, ...(forceOverwrite ? { forceOverwrite: true } : {}) }),
     });
   } catch {
     // silent — local state still works if offline
@@ -136,6 +136,8 @@ export function useWorkflow() {
   const [isNewWeek, setIsNewWeek] = useState(() => checkAndHandleNewWeek());
   const weekId = getCurrentWeekId();
   const skipPollUntil = useRef<number>(0);
+  // When true, the next state-push effect sends forceOverwrite=true (for week resets)
+  const pendingForceOverwrite = useRef(false);
 
   // Poll server for shared state every 4 seconds
   useEffect(() => {
@@ -162,22 +164,25 @@ export function useWorkflow() {
     return () => document.removeEventListener("visibilitychange", handleVisibility);
   }, []);
 
-  // Persist state locally + push to server; block polling for 3s to avoid race condition
+  // Persist state locally + push to server; block polling for 1.5s to avoid race condition.
+  // The state effect also carries the forceOverwrite flag for reset operations.
   useEffect(() => {
     try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch {}
-    skipPollUntil.current = Date.now() + 3000;
-    pushSession(weekId, { state, sessionNotes, sessionInfo });
+    const overwrite = pendingForceOverwrite.current;
+    pendingForceOverwrite.current = false;
+    skipPollUntil.current = Date.now() + 1500;
+    pushSession(weekId, { state, sessionNotes, sessionInfo }, overwrite);
   }, [state]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     try { window.localStorage.setItem(SESSION_NOTES_KEY, sessionNotes); } catch {}
-    skipPollUntil.current = Date.now() + 3000;
+    skipPollUntil.current = Date.now() + 1500;
     pushSession(weekId, { state, sessionNotes, sessionInfo });
   }, [sessionNotes]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     try { window.localStorage.setItem(SESSION_INFO_KEY, JSON.stringify(sessionInfo)); } catch {}
-    skipPollUntil.current = Date.now() + 3000;
+    skipPollUntil.current = Date.now() + 1500;
     pushSession(weekId, { state, sessionNotes, sessionInfo });
   }, [sessionInfo]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -241,6 +246,7 @@ export function useWorkflow() {
   }, []);
 
   const resetAll = useCallback(() => {
+    pendingForceOverwrite.current = true;
     setState({});
     setCelebratedPhases(new Set());
     setBumperUsed(new Set());
@@ -374,6 +380,7 @@ export function useWorkflow() {
   }, []);
 
   const startNewWeek = useCallback(() => {
+    pendingForceOverwrite.current = true;
     setState({});
     setCelebratedPhases(new Set());
     setSessionNotes("");
