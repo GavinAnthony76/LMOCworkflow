@@ -15,7 +15,7 @@ import { BumperListWidget } from "@/components/BumperList";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
-import { ShieldAlert, Bell, BellOff, RefreshCw, Download, Upload } from "lucide-react";
+import { ShieldAlert, Bell, BellOff, RefreshCw, Download, Upload, RotateCcw } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Home() {
@@ -25,6 +25,7 @@ export default function Home() {
     checkAllPhase,
     uncheckAllPhase,
     resetPhase,
+    resetRole,
     resetAll,
     getPhaseProgress,
     getRoleProgress,
@@ -221,6 +222,21 @@ export default function Home() {
 
               {WORKFLOW_ROLES.map((role) => (
                 <TabsContent key={role.id} value={role.id} className="focus-visible:outline-none space-y-4">
+                  <div className="flex justify-end">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-xs text-muted-foreground hover:text-destructive hover:bg-destructive/10 h-8 touch-manipulation"
+                      onClick={() => {
+                        if (confirm(`Reset all ${role.title} tasks?\n\nThis clears your role's sheet on every connected device.`)) {
+                          resetRole(role.id);
+                        }
+                      }}
+                    >
+                      <RotateCcw className="h-3 w-3 mr-1.5" />
+                      Reset {role.shortTitle} Sheet
+                    </Button>
+                  </div>
                   {role.phases.map((phase) => (
                     <PhaseView
                       key={phase.id}

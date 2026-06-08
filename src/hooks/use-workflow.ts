@@ -245,6 +245,25 @@ export function useWorkflow() {
     });
   }, []);
 
+  const resetRole = useCallback((roleId: string) => {
+    setState((prev) => {
+      const newState = { ...prev };
+      const role = WORKFLOW_ROLES.find((r) => r.id === roleId);
+      if (role) {
+        role.phases.flatMap(getPhaseTaskIds).forEach((id) => {
+          if (newState[id]) newState[id] = { completed: false };
+        });
+      }
+      return newState;
+    });
+    setCelebratedPhases((prev) => {
+      const next = new Set(prev);
+      const role = WORKFLOW_ROLES.find((r) => r.id === roleId);
+      if (role) role.phases.forEach((p) => next.delete(p.id));
+      return next;
+    });
+  }, []);
+
   const resetAll = useCallback(() => {
     pendingForceOverwrite.current = true;
     setState({});
@@ -402,6 +421,7 @@ export function useWorkflow() {
     checkAllPhase,
     uncheckAllPhase,
     resetPhase,
+    resetRole,
     resetAll,
     getPhaseProgress,
     getRoleProgress,
